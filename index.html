@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activation Code Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .container { max-width: 500px; margin: auto; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        .code-box { margin-top: 20px; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Activation Code Generator</h2>
+        <button onclick="generateCodes()">Generate Codes</button>
+        <div id="codes" class="code-box"></div>
+    </div>
+
+    <script>
+        function generateRandomHex(length) {
+            const chars = "ABCDEF0123456789";
+            let result = "";
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        function generateCodes() {
+            let codes = "";
+            for (let i = 0; i < 10; i++) {
+                let iccid = "89852342022089" + Math.floor(100000 + Math.random() * 900000);
+                let days = Math.floor(Math.random() * 6) + 15;
+                let randomCode = generateRandomHex(32);
+                codes += `${iccid},ASIA_${days} days Unlimited Data,LPA:1$rsp1.cmlink.com$${randomCode}\n`;
+            }
+            document.getElementById("codes").textContent = codes;
+        }
+    </script>
+</body>
+</html>
